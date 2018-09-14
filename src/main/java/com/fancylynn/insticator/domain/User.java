@@ -11,19 +11,20 @@ import javax.persistence.*;
 //Question_start represents the starting point of the question pool
 
 @Entity
+@Table(name="user")
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="id", nullable = false, updatable = false)
-    private Long id;
+    @Column(name="user_id", nullable = false, updatable = false)
+    private Long user_id;
     private Long question_start;
 
-    public Long getId() {
-        return id;
+    public Long getUser_id() {
+        return user_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 
     public Long getQuestion_start() {
