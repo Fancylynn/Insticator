@@ -1,6 +1,8 @@
 package com.fancylynn.insticator.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Lynn on 2018/9/10.
@@ -17,6 +19,10 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="user_id", nullable = false, updatable = false)
     private Long user_id;
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<QuestionResponse> questionResponses = new HashSet<>();
+
     private Long question_start;
 
     public Long getUser_id() {
@@ -25,6 +31,14 @@ public class User {
 
     public void setUser_id(Long user_id) {
         this.user_id = user_id;
+    }
+
+    public Set<QuestionResponse> getQuestionResponses() {
+        return questionResponses;
+    }
+
+    public void setQuestionResponses(Set<QuestionResponse> questionResponses) {
+        this.questionResponses = questionResponses;
     }
 
     public Long getQuestion_start() {
