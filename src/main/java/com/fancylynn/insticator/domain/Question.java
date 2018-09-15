@@ -18,6 +18,10 @@ public class Question {
     @OneToMany(mappedBy = "questions", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<QuestionResponse> questionResponses = new HashSet<>();
 
+    @OneToMany(mappedBy = "matrixQuestions", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @MapsId
+    private Set<Matrix> matrixs = new HashSet<>();
+
     private String question_content;
 
     @ManyToOne(fetch = FetchType.EAGER)
