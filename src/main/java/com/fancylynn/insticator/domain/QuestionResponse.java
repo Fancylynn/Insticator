@@ -26,11 +26,6 @@ public class QuestionResponse {
 
     private String questionAns;
 
-    public QuestionResponse(User users, Question questions) {
-        this.users = users;
-        this.questions = questions;
-    }
-
     public Long getQuestion_response_id() {
         return question_response_id;
     }
@@ -55,5 +50,11 @@ public class QuestionResponse {
         this.questions = questions;
     }
 
+    public String getQuestionAns() {
+        return questionAns;
+    }
 
+    public void setQuestionAns(String questionAns) {
+        this.questionAns = questionAns;
+    }
 }
