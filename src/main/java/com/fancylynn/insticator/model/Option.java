@@ -1,4 +1,4 @@
-package com.fancylynn.insticator.domain;
+package com.fancylynn.insticator.model;
 
 import javax.persistence.*;
 

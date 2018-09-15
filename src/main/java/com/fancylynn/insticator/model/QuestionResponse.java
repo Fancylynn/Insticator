@@ -1,10 +1,6 @@
-package com.fancylynn.insticator.domain;
+package com.fancylynn.insticator.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Lynn on 2018/9/15.
