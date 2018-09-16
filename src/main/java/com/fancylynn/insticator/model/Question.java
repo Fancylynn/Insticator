@@ -9,6 +9,8 @@ import java.util.Set;
 /**
  * Created by Lynn on 2018/9/12.
  */
+
+// Question table: all the questions in the pool
 @Entity
 @Table(name="question_pool")
 public class Question {

@@ -5,6 +5,7 @@ import javax.persistence.*;
 /**
  * Created by Lynn on 2018/9/15.
  */
+// Question_response: store all the user reponses
 @Entity
 public class QuestionResponse {
     @Id

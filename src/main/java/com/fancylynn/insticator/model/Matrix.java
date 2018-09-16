@@ -7,44 +7,39 @@ import java.util.Set;
 /**
  * Created by Lynn on 2018/9/15.
  */
+
+// Matrix table: for the info related to matrix questions
 @Entity
 public class Matrix {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="matrix_id", nullable = false, updatable = false)
-    private Long matrix_id;
+    private Long matrixId;
 
-    @OneToMany(mappedBy = "matrixs", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Option> options = new HashSet<>();
+    @OneToMany(mappedBy = "matrix", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<MatrixOption> matrixOptions = new HashSet<>();
 
-    private String matrix_content;
+    @Column(name="matrix_content")
+    private String matrixContent;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="question_id_fk")
     private Question matrixQuestions;
 
-    public Long getMatrix_id() {
-        return matrix_id;
+    public Long getMatrixId() {
+        return matrixId;
     }
 
-    public void setMatrix_id(Long matrix_id) {
-        this.matrix_id = matrix_id;
+    public void setMatrixId(Long matrixId) {
+        this.matrixId = matrixId;
     }
 
-    public Set<Option> getOptions() {
-        return options;
+    public String getMatrixContent() {
+        return matrixContent;
     }
 
-    public void setOptions(Set<Option> options) {
-        this.options = options;
-    }
-
-    public String getMatrix_content() {
-        return matrix_content;
-    }
-
-    public void setMatrix_content(String matrix_content) {
-        this.matrix_content = matrix_content;
+    public void setMatrixContent(String matrixContent) {
+        this.matrixContent = matrixContent;
     }
 
     public Question getMatrixQuestions() {
@@ -53,5 +48,13 @@ public class Matrix {
 
     public void setMatrixQuestions(Question matrixQuestions) {
         this.matrixQuestions = matrixQuestions;
+    }
+
+    public Set<MatrixOption> getMatrixOptions() {
+        return matrixOptions;
+    }
+
+    public void setMatrixOptions(Set<MatrixOption> matrixOptions) {
+        this.matrixOptions = matrixOptions;
     }
 }

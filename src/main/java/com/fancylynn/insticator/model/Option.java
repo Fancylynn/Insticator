@@ -7,6 +7,8 @@ import javax.persistence.*;
 /**
  * Created by Lynn on 2018/9/15.
  */
+
+// Option table: for all the options except for matrix options
 @Entity
 @Table(name = "option_list")
 public class Option {
@@ -21,11 +23,6 @@ public class Option {
     @JoinColumn(name = "question_id_fk")
     @JsonIgnore
     private Question questions;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="matrix_id_fk")
-    @JsonIgnore
-    private Matrix matrixs;
 
     public Long getOption_id() {
         return option_id;
@@ -49,14 +46,6 @@ public class Option {
 
     public void setQuestions(Question questions) {
         this.questions = questions;
-    }
-
-    public Matrix getMatrixs() {
-        return matrixs;
-    }
-
-    public void setMatrixs(Matrix matrixs) {
-        this.matrixs = matrixs;
     }
 
 }

@@ -8,7 +8,7 @@ import java.util.Set;
  * Created by Lynn on 2018/9/10.
  */
 
-//Table that stores all the user related data
+//User table: Table that stores all the user related data
 //UUID for each end user
 //Question_start represents the starting point of the question pool
 

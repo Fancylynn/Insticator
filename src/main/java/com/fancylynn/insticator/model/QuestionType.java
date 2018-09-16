@@ -9,6 +9,8 @@ import java.util.Set;
 /**
  * Created by Lynn on 2018/9/13.
  */
+
+// Question_type: four different question types
 @Entity
 public class QuestionType {
     @Id
