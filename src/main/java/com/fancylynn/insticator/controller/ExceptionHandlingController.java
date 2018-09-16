@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 
 /**
@@ -16,7 +17,8 @@ import javax.persistence.EntityNotFoundException;
 public class ExceptionHandlingController {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler({
-            NoMoreQuestionException.class
+            NoMoreQuestionException.class,
+            EntityExistsException.class
     })
     public ResponseEntity<String> badRequestError(Exception ex) {
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);

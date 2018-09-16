@@ -1,5 +1,7 @@
 package com.fancylynn.insticator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +26,7 @@ public class User {
     private String ipAddress;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<QuestionResponse> questionResponses = new HashSet<>();
 
     private Long question_start;

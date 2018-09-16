@@ -10,6 +10,7 @@ import com.fancylynn.insticator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,5 +90,22 @@ public class UserService {
 
         return userQuestions;
 
+    }
+
+    // Create new user
+    public User createNewUser(String ipAddress) throws EntityExistsException{
+        // Check if the ip address exists
+        if (userDao.findByIpAddress(ipAddress) != null) {
+            throw new EntityExistsException("User exists with this ip address!");
+        }
+
+        // new user creation
+        User newUser = new User();
+        newUser.setIpAddress(ipAddress);
+        newUser.setQuestion_start(1L);
+
+        userDao.save(newUser);
+
+        return newUser;
     }
 }
