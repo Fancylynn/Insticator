@@ -1,6 +1,8 @@
 package com.fancylynn.insticator.controller;
 
 import com.fancylynn.insticator.dto.QuestionDto;
+import com.fancylynn.insticator.dto.ResponseDto;
+import com.fancylynn.insticator.model.User;
 import com.fancylynn.insticator.service.QuestionService;
 import com.fancylynn.insticator.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +27,16 @@ public class QuestionController {
     @RequestMapping(method = RequestMethod.GET, path = "/questionList")
     public @ResponseBody ResponseEntity<List<QuestionDto>> getQuestionList() {
         return new ResponseEntity<List<QuestionDto>>(questionService.getAllQuestions(), HttpStatus.OK);
+    }
+
+    // HTTP.POST for saving the user question response
+    @RequestMapping(method = RequestMethod.POST, path = "/response")
+    public ResponseEntity<Void> saveQuestionResponse (
+            @RequestBody ResponseDto responseDto
+    ){
+        questionService.saveQuestionResponse(responseDto);
+
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
+
     }
 }

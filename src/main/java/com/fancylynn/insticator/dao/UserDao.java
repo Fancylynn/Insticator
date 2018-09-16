@@ -8,4 +8,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface UserDao extends CrudRepository<User, Long> {
     User findByIpAddress(String ipAddress);
+
+    User findByUserId(Long userId);
 }

@@ -18,7 +18,8 @@ public class ExceptionHandlingController {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler({
             NoMoreQuestionException.class,
-            EntityExistsException.class
+            EntityExistsException.class,
+            IllegalArgumentException.class
     })
     public ResponseEntity<String> badRequestError(Exception ex) {
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);

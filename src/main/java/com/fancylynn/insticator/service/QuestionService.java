@@ -1,16 +1,13 @@
 package com.fancylynn.insticator.service;
 
-import com.fancylynn.insticator.dao.MatrixDao;
-import com.fancylynn.insticator.dao.MatrixOptionDao;
-import com.fancylynn.insticator.dao.OptionDao;
-import com.fancylynn.insticator.dao.QuestionDao;
+import com.fancylynn.insticator.dao.*;
 import com.fancylynn.insticator.dto.QuestionDto;
-import com.fancylynn.insticator.model.Matrix;
-import com.fancylynn.insticator.model.MatrixOption;
-import com.fancylynn.insticator.model.Question;
+import com.fancylynn.insticator.dto.ResponseDto;
+import com.fancylynn.insticator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +30,12 @@ public class QuestionService {
 
     @Autowired
     private MatrixOptionDao matrixOptionDao;
+
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private QuestionResponseDao questionResponseDao;
 
     // Service for giving back all the existing questions in the database
     public List<QuestionDto> getAllQuestions() {
@@ -62,5 +65,34 @@ public class QuestionService {
         }
 
         return result;
+    }
+
+    public void saveQuestionResponse(
+            ResponseDto responseDto
+    ) throws EntityNotFoundException,IllegalArgumentException {
+        QuestionResponse curtResponse = new QuestionResponse();
+
+        // Check whether the response is empty
+        String response = responseDto.getResponse();
+        if (response == null || response.length() == 0) {
+            throw new IllegalArgumentException("Response cannot be empty!");
+        }
+        curtResponse.setQuestionAns(response);
+
+        // Check whether the question can be found in the pool
+        Question question = questionDao.findByQuestionId(responseDto.getQuestionId());
+        if (question == null) {
+            throw new EntityNotFoundException("Question not found!");
+        }
+        curtResponse.setQuestions(question);
+
+        // Check whether the user can be found in the db
+        User user = userDao.findByUserId(responseDto.getUserId());
+        if (user == null) {
+            throw new EntityNotFoundException("User not found!");
+        }
+        curtResponse.setUsers(user);
+
+        questionResponseDao.save(curtResponse);
     }
 }

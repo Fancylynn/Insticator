@@ -1,6 +1,8 @@
 package com.fancylynn.insticator.controller;
 
 import com.fancylynn.insticator.dto.QuestionDto;
+import com.fancylynn.insticator.dto.ResponseDto;
+import com.fancylynn.insticator.model.QuestionResponse;
 import com.fancylynn.insticator.model.User;
 import com.fancylynn.insticator.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

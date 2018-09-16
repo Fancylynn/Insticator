@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Created by Lynn on 2018/9/10.
@@ -21,7 +20,7 @@ public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="user_id", nullable = false, updatable = false)
-    private Long user_id;
+    private Long userId;
 
     private String ipAddress;
 
@@ -31,12 +30,12 @@ public class User {
 
     private Long question_start;
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Set<QuestionResponse> getQuestionResponses() {
