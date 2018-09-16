@@ -34,6 +34,7 @@ public class QuestionService {
     @Autowired
     private MatrixOptionDao matrixOptionDao;
 
+    // Service for giving back all the existing questions in the database
     public List<QuestionDto> getAllQuestions() {
         List<Question> questionList = (List) questionDao.findAll();
         List<QuestionDto> result = new ArrayList<>();
