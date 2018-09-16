@@ -1,5 +1,7 @@
 package com.fancylynn.insticator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +18,7 @@ public class QuestionType {
     private String type_name;
 
     @OneToMany(mappedBy = "questionType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Question> questions = new HashSet<>();
 
     public Long getType_id() {

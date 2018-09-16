@@ -1,5 +1,7 @@
 package com.fancylynn.insticator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,16 +14,19 @@ import java.util.Set;
 public class Question {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="question_id", nullable = false, updatable = false)
-    private Long question_id;
+    @Column(name="questionId", nullable = false, updatable = false)
+    private Long questionId;
 
     @OneToMany(mappedBy = "questions", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<QuestionResponse> questionResponses = new HashSet<>();
 
     @OneToMany(mappedBy = "matrixQuestions", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Matrix> matrixs = new HashSet<>();
 
     @OneToMany(mappedBy = "questions", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Option> questionOptions = new HashSet<>();
 
     private String question_content;
@@ -30,16 +35,14 @@ public class Question {
     @JoinColumn(name="question_type")
     private QuestionType questionType;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "correct_option_id_fk")
-    private Option correctOption;
+    private String correctOption;
 
-    public Long getQuestion_id() {
-        return question_id;
+    public Long getQuestionId() {
+        return questionId;
     }
 
-    public void setQuestion_id(Long question_id) {
-        this.question_id = question_id;
+    public void setQuestionId(Long questionId) {
+        this.questionId = questionId;
     }
 
     public Set<QuestionResponse> getQuestionResponses() {
@@ -82,11 +85,11 @@ public class Question {
         this.questionType = questionType;
     }
 
-    public Option getCorrectOption() {
+    public String getCorrectOption() {
         return correctOption;
     }
 
-    public void setCorrectOption(Option correctOption) {
+    public void setCorrectOption(String correctOption) {
         this.correctOption = correctOption;
     }
 }

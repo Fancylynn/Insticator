@@ -1,5 +1,7 @@
 package com.fancylynn.insticator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -13,17 +15,16 @@ public class Option {
     @Column(name="option_id", nullable = false, updatable = false)
     private Long option_id;
 
-    @OneToOne(mappedBy = "correctOption", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Question questionOption;
-
     private String option_content;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "question_id_fk")
+    @JsonIgnore
     private Question questions;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="matrix_id_fk")
+    @JsonIgnore
     private Matrix matrixs;
 
     public Long getOption_id() {
@@ -32,14 +33,6 @@ public class Option {
 
     public void setOption_id(Long option_id) {
         this.option_id = option_id;
-    }
-
-    public Question getQuestionOption() {
-        return questionOption;
-    }
-
-    public void setQuestionOption(Question questionOption) {
-        this.questionOption = questionOption;
     }
 
     public String getOption_content() {
@@ -65,4 +58,5 @@ public class Option {
     public void setMatrixs(Matrix matrixs) {
         this.matrixs = matrixs;
     }
+
 }

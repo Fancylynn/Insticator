@@ -1,5 +1,7 @@
 package com.fancylynn.insticator.dto;
 
+import com.fancylynn.insticator.model.Option;
+
 import java.util.List;
 
 /**
@@ -9,8 +11,8 @@ public class QuestionDto {
     private Long id;
     private String content;
     private String type;
-    private Long correctOption;
-    private List<String> options;
+    private String correctOption;
+    private List<Option> options;
 
     public Long getId() {
         return id;
@@ -36,19 +38,19 @@ public class QuestionDto {
         this.type = type;
     }
 
-    public Long getCorrectOption() {
+    public String getCorrectOption() {
         return correctOption;
     }
 
-    public void setCorrectOption(Long correctOption) {
+    public void setCorrectOption(String correctOption) {
         this.correctOption = correctOption;
     }
 
-    public List<String> getOptions() {
+    public List<Option> getOptions() {
         return options;
     }
 
-    public void setOptions(List<String> options) {
+    public void setOptions(List<Option> options) {
         this.options = options;
     }
 }
