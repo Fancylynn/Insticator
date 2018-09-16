@@ -1,5 +1,7 @@
 package com.fancylynn.insticator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -17,6 +19,7 @@ public class MatrixOption {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "matrix_id")
+    @JsonIgnore
     private Matrix matrix;
 
     public Long getMatrixOptionId() {

@@ -1,8 +1,10 @@
 package com.fancylynn.insticator.dto;
 
+import com.fancylynn.insticator.model.MatrixOption;
 import com.fancylynn.insticator.model.Option;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Lynn on 2018/9/15.
@@ -13,6 +15,7 @@ public class QuestionDto {
     private String type;
     private String correctOption;
     private List<Option> options;
+    private Map<String, List<MatrixOption>> matrixOptions;
 
     public Long getId() {
         return id;
@@ -52,5 +55,13 @@ public class QuestionDto {
 
     public void setOptions(List<Option> options) {
         this.options = options;
+    }
+
+    public Map<String, List<MatrixOption>> getMatrixOptions() {
+        return matrixOptions;
+    }
+
+    public void setMatrixOptions(Map<String, List<MatrixOption>> matrixOptions) {
+        this.matrixOptions = matrixOptions;
     }
 }
