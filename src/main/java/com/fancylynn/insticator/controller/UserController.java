@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping(path="/user") // This means URL's start with /user (after Application path)
 public class UserController {
     // Set the rolling period of how many questions should be return every time
-    private Integer rollingPeriod = 1;
+    private Integer rollingPeriod = 2;
 
     @Autowired
     private UserService userService;

@@ -77,7 +77,7 @@ public class UserService {
         }
 
         // Update user starting point in the database
-        curtUser.setQuestion_start(startPoint + rollingPeriod);
+        curtUser.setQuestion_start(startPoint + userQuestions.size());
         userDao.save(curtUser);
 
         return userQuestions;
