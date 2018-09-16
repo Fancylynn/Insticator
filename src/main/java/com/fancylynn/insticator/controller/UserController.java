@@ -30,4 +30,5 @@ public class UserController {
         return new ResponseEntity<List<QuestionDto>>(
                 userService.getUserQuestionList(rollingPeriod, ipAddress), HttpStatus.OK);
     }
+
 }

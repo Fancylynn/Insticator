@@ -10,6 +10,7 @@ import com.fancylynn.insticator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,10 +39,16 @@ public class UserService {
     // Return the questions list based on previous user info if user exists
     public List<QuestionDto> getUserQuestionList(
             Integer rollingPeriod, String ipAddress
-    ) throws NoMoreQuestionException{
+    ) throws NoMoreQuestionException, EntityNotFoundException{
         List<QuestionDto> userQuestions = new ArrayList<>();
         // Get the current user based on ip address
         User curtUser = userDao.findByIpAddress(ipAddress);
+
+        // Check whether current user exists in the database or not
+        if (curtUser == null) {
+            throw new EntityNotFoundException("User not found!");
+        }
+
         // Get the question starting point
         Long startPoint = curtUser.getQuestion_start();
         // Get the number of questions list based on rolling period
