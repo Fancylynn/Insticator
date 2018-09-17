@@ -3,9 +3,7 @@ package com.fancylynn.insticator.controller;
 import com.fancylynn.insticator.dto.CreateQuestionDto;
 import com.fancylynn.insticator.dto.QuestionDto;
 import com.fancylynn.insticator.dto.ResponseDto;
-import com.fancylynn.insticator.model.User;
 import com.fancylynn.insticator.service.QuestionService;
-import com.fancylynn.insticator.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +23,7 @@ public class QuestionController {
     private QuestionService questionService;
 
     // HTTP.GET for all the existing questions in the database
-    @RequestMapping(method = RequestMethod.GET, path = "/questionList")
+    @RequestMapping(method = RequestMethod.GET, path = "/all")
     public @ResponseBody ResponseEntity<List<QuestionDto>> getQuestionList() {
         return new ResponseEntity<List<QuestionDto>>(questionService.getAllQuestions(), HttpStatus.OK);
     }
@@ -42,7 +40,7 @@ public class QuestionController {
     }
 
     // HTTP.POST for creating a new question
-    @RequestMapping(method = RequestMethod.POST, path = "/create")
+    @RequestMapping(method = RequestMethod.POST, path = "/")
     public ResponseEntity<QuestionDto> createNewQuestion (
             @RequestBody CreateQuestionDto createQuestionDto
     ){
@@ -53,7 +51,7 @@ public class QuestionController {
     }
 
     // HTTP.DELETE for deleting an existing question
-    @RequestMapping(method = RequestMethod.DELETE, path = "/delete/{questionId}")
+    @RequestMapping(method = RequestMethod.DELETE, path = "/{questionId}")
     public ResponseEntity<Void> deleteQuestion (
             @PathVariable Long questionId
     ){

@@ -1,7 +1,5 @@
 package com.fancylynn.insticator.model;
 
-import com.fancylynn.insticator.dto.ResponseDto;
-
 import javax.persistence.*;
 
 /**

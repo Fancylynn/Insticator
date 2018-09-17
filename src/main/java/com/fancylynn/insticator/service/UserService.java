@@ -3,8 +3,6 @@ package com.fancylynn.insticator.service;
 import com.fancylynn.insticator.dao.*;
 import com.fancylynn.insticator.dto.QuestionDto;
 import com.fancylynn.insticator.exception.NoMoreQuestionException;
-import com.fancylynn.insticator.model.Matrix;
-import com.fancylynn.insticator.model.MatrixOption;
 import com.fancylynn.insticator.model.Question;
 import com.fancylynn.insticator.model.User;
 import com.fancylynn.insticator.util.QuestionUtil;
@@ -19,9 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Lynn on 2018/9/16.
