@@ -7,6 +7,7 @@ import com.fancylynn.insticator.model.Matrix;
 import com.fancylynn.insticator.model.MatrixOption;
 import com.fancylynn.insticator.model.Question;
 import com.fancylynn.insticator.model.User;
+import com.fancylynn.insticator.util.QuestionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,9 @@ public class UserService {
     @Autowired
     private MatrixOptionDao matrixOptionDao;
 
+    @Autowired
+    private QuestionUtil questionUtil;
+
     // Return the questions list based on previous user info if user exists
     public List<QuestionDto> getUserQuestionList(
             Integer rollingPeriod, String ipAddress
@@ -56,25 +60,7 @@ public class UserService {
         try {
             for (Long startIdx = startPoint; startIdx < startPoint + rollingPeriod; startIdx++) {
                 Question curt = questionDao.findByQuestionId(startIdx);
-                QuestionDto temp = new QuestionDto();
-                temp.setId(curt.getQuestionId());
-                temp.setContent(curt.getQuestionContent());
-                temp.setType(curt.getQuestionType().getTypeName());
-                temp.setCorrectOption(curt.getCorrectOption());
-                if (!curt.getQuestionType().getTypeName().equals("matrix")) {
-                    temp.setOptions(optionDao.findByQuestions_QuestionId(curt.getQuestionId()));
-                } else {
-                    List<Matrix> matrix = matrixDao.findByMatrixQuestions_QuestionId(curt.getQuestionId());
-                    Map<String, List<MatrixOption>> matrixOptions = new HashMap<>();
-                    for (Matrix m : matrix) {
-                        System.out.println(matrixOptionDao.findByMatrix_MatrixId(m.getMatrixId()).size());
-                        System.out.println(m.getMatrixId());
-                        matrixOptions.put(m.getMatrixContent(), matrixOptionDao.findByMatrix_MatrixId(m.getMatrixId()));
-                    }
-                    temp.setMatrixOptions(matrixOptions);
-                }
-
-                userQuestions.add(temp);
+                userQuestions.add(questionUtil.setValuesForQuestionDto(curt));
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
