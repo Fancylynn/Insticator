@@ -13,6 +13,8 @@ Create RESTful API endpoints for an embed to show four different types of questi
 - MySQL database for data storage
 
 ## Database Structure
+![alt text](https://github.com/Fancylynn/Insticator/blob/master/database%20schema.jpg)
+
 ## RESTful API endpoints
 ### Question
 | Method | Endpoint | Purpose |
@@ -49,3 +51,11 @@ Create RESTful API endpoints for an embed to show four different types of questi
   JSON.stringify({ #question_type: [blue, red, yellow] })
   // expected output: "{"#question_type":["blue", "red", "yellow"]}"
   ```
+  
+ ## Assumption
+ - In this project, I assume that the relationship between questions and options are one to many instead of many to many, which means options won't appear in different questions (as the dataset I used for testing is pretty small and won't influence the performance even if duplication exists)
+ 
+ ## Improvement and Scalability
+ - Instead of one to many relationship between questions and answers, additional tables should be provided for improving performance as options can appear in multiple questions. 
+ 
+ - Load balance should be used to improve the distribution of workloads as the scale of questions and end users reach millions. Multiple servers and databases may use as the distribution system for both acrossing multiple resources and data backup.  
