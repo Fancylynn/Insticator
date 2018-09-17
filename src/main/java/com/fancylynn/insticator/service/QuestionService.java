@@ -181,5 +181,36 @@ public class QuestionService {
 
     }
 
+    public void deleteQuestion(Long questionId) {
+        // Get the target question
+        Question targetQuestion = questionDao.findByQuestionId(questionId);
+
+        if (targetQuestion.getQuestionType().equals("matrix")) {
+            // Get target matrix
+            List<Matrix> targetMatrix = matrixDao.findByMatrixQuestions_QuestionId(questionId);
+
+            // Get target matrix options
+            for (Matrix m : targetMatrix) {
+                // Get matrix options for each matrix
+                List<MatrixOption> targetMatrixOption = matrixOptionDao.findByMatrix_MatrixId(m.getMatrixId());
+                for (MatrixOption mo : targetMatrixOption) {
+                    // first: delete matrix options
+                    matrixOptionDao.delete(mo);
+                }
+                // second: delete matrix
+                matrixDao.delete(m);
+            }
+        } else {
+            // Get a list of options based on target question
+            List<Option> targetOptions = optionDao.findByQuestions_QuestionId(questionId);
+            for (Option op : targetOptions) {
+                // first: delete options
+                optionDao.delete(op);
+            }
+        }
+        // final: delete question
+        questionDao.delete(targetQuestion);
+    }
+
 
 }

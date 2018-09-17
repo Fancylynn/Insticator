@@ -51,4 +51,15 @@ public class QuestionController {
         return new ResponseEntity<QuestionDto>(createdQuestion, HttpStatus.CREATED);
 
     }
+
+    // HTTP.DELETE for deleting an existing question
+    @RequestMapping(method = RequestMethod.DELETE, path = "/delete/{questionId}")
+    public ResponseEntity<Void> deleteQuestion (
+            @PathVariable Long questionId
+    ){
+
+        questionService.deleteQuestion(questionId);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+
+    }
 }
