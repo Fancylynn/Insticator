@@ -16,6 +16,9 @@ Create RESTful API endpoints for an embed to show four different types of questi
 ![alt text](https://github.com/Fancylynn/Insticator/blob/master/database%20schema.jpg)
 
 ## RESTful API endpoints
+- Host-address=api.fancylynn.com
+- App-name=insticator
+- URL prefix should be http://api.fancylynn.com/insticator
 ### Question
 | Method | Endpoint | Purpose |
 |--|--|--|
@@ -51,7 +54,41 @@ Create RESTful API endpoints for an embed to show four different types of questi
   JSON.stringify({ #question_type: [blue, red, yellow] })
   // expected output: "{"#question_type":["blue", "red", "yellow"]}"
   ```
-  
+### Examples
+- Create a new question
+http://api.fancylynn.com/insticator/question/
+```
+{
+	"questionContent": "what's your favorite car brand",
+	"questionType": "poll",
+	"options": ["Nissan", "Honda", "Audi", "BMW"]
+}
+```
+```
+{
+	"questionContent": "Which team won the 2017 super bowl?",
+	"questionType": "trivia",
+	"options": ["Falcons", "Patriots"],
+	"correctOption": "Patriots"
+}
+```
+```
+{
+	"questionContent": "Please tell us a bit about yourself",
+	"questionType": "matrix",
+	"matrixOptions": {"age": ["<18", "18-35", "35-55", ">55"], "gender": ["Male", "Female"]}
+}
+```
+- Save answer to question
+http://api.fancylynn.com/insticator/question/response
+```
+{
+	"userId": 1,
+	"questionId": 1,
+	"response": "Nissan"
+}
+```
+
  ## Assumption
  - In this project, I assume that the relationship between questions and options is one to many instead of many to many, which means options won't appear in different questions (as the dataset I used for testing is pretty small and won't influence the performance even if duplication exists)
  
