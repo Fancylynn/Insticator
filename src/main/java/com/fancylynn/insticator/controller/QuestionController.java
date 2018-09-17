@@ -1,5 +1,6 @@
 package com.fancylynn.insticator.controller;
 
+import com.fancylynn.insticator.dto.CreateQuestionDto;
 import com.fancylynn.insticator.dto.QuestionDto;
 import com.fancylynn.insticator.dto.ResponseDto;
 import com.fancylynn.insticator.model.User;
@@ -37,6 +38,17 @@ public class QuestionController {
         questionService.saveQuestionResponse(responseDto);
 
         return new ResponseEntity<Void>(HttpStatus.CREATED);
+
+    }
+
+    // HTTP.POST for creating a new question
+    @RequestMapping(method = RequestMethod.POST, path = "/create")
+    public ResponseEntity<QuestionDto> createNewQuestion (
+            @RequestBody CreateQuestionDto createQuestionDto
+    ){
+        QuestionDto createdQuestion = questionService.createNewQuestion(createQuestionDto);
+
+        return new ResponseEntity<QuestionDto>(createdQuestion, HttpStatus.CREATED);
 
     }
 }

@@ -2,7 +2,6 @@ package com.fancylynn.insticator.service;
 
 import com.fancylynn.insticator.dao.*;
 import com.fancylynn.insticator.dto.QuestionDto;
-import com.fancylynn.insticator.dto.ResponseDto;
 import com.fancylynn.insticator.exception.NoMoreQuestionException;
 import com.fancylynn.insticator.model.Matrix;
 import com.fancylynn.insticator.model.MatrixOption;
@@ -59,10 +58,10 @@ public class UserService {
                 Question curt = questionDao.findByQuestionId(startIdx);
                 QuestionDto temp = new QuestionDto();
                 temp.setId(curt.getQuestionId());
-                temp.setContent(curt.getQuestion_content());
-                temp.setType(curt.getQuestionType().getType_name());
+                temp.setContent(curt.getQuestionContent());
+                temp.setType(curt.getQuestionType().getTypeName());
                 temp.setCorrectOption(curt.getCorrectOption());
-                if (!curt.getQuestionType().getType_name().equals("matrix")) {
+                if (!curt.getQuestionType().getTypeName().equals("matrix")) {
                     temp.setOptions(optionDao.findByQuestions_QuestionId(curt.getQuestionId()));
                 } else {
                     List<Matrix> matrix = matrixDao.findByMatrixQuestions_QuestionId(curt.getQuestionId());

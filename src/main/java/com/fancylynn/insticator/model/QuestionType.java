@@ -17,7 +17,7 @@ public class QuestionType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "type_id", nullable = false, updatable = false)
     private Long type_id;
-    private String type_name;
+    private String typeName;
 
     @OneToMany(mappedBy = "questionType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
@@ -31,12 +31,12 @@ public class QuestionType {
         this.type_id = type_id;
     }
 
-    public String getType_name() {
-        return type_name;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setType_name(String type_name) {
-        this.type_name = type_name;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public Set<Question> getQuestions() {

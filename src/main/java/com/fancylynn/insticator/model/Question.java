@@ -31,7 +31,7 @@ public class Question {
     @JsonIgnore
     private Set<Option> questionOptions = new HashSet<>();
 
-    private String question_content;
+    private String questionContent;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="question_type")
@@ -71,12 +71,12 @@ public class Question {
         this.questionOptions = questionOptions;
     }
 
-    public String getQuestion_content() {
-        return question_content;
+    public String getQuestionContent() {
+        return questionContent;
     }
 
-    public void setQuestion_content(String question_content) {
-        this.question_content = question_content;
+    public void setQuestionContent(String questionContent) {
+        this.questionContent = questionContent;
     }
 
     public QuestionType getQuestionType() {
