@@ -34,7 +34,9 @@ Create RESTful API endpoints for an embed to show four different types of questi
 | POST | /user | Create a new user if the ip address doesn't exist in the user list |
 
 ### How it works
-- Starting from the front-end, it should provide an required param of end user's ip address; By detecting if the ip address exists in the user list, backend either gives back a list of questions based on rollingPeriod(number of questions gives back to end user everytime) and startPoint (for avoid giving back the questions that end user has answered before), or returns error message saying the user doesn't exist
+- Starting from the front-end, it should provide an required param of end user's ip address; By detecting if the ip address exists in the user list, backend either gives back a list of questions based on rollingPeriod(number of questions gives back to end user everytime) and startPoint (for avoid giving back the questions that end user has answered before), or returns error message saying the user doesn't exist.
+
+- Another advantage of using starting point, it increases the speed of finding the next unanswered questions instead of comparing the question pool with questions have been answered. 
 
 - If the user doesn't exist, front-end should send create new user post request, backend will generate record based on end-user ip address, the default starting point of the questions is 1.
 
@@ -85,7 +87,14 @@ http://api.fancylynn.com/insticator/question/response
 {
 	"userId": 1,
 	"questionId": 1,
-	"response": "Nissan"
+	"response": "{\"poll\":[\"Nissan\"]}" 
+}
+```
+```
+{
+	"userId": 1,
+	"questionId": 4,
+	"response": "{\"matrix\":{\"age\":\"< 18\", \"gender\": \"Female\"}" 
 }
 ```
 
@@ -96,3 +105,6 @@ http://api.fancylynn.com/insticator/question/response
  - Instead of one to many relationship between questions and answers, additional tables should be provided for improving performance as options can appear in multiple questions. 
  
  - Load balance should be used to improve the distribution of workloads as the scale of questions and end users reach millions. Multiple servers and databases may use as the distribution system for both acrossing multiple resources and data backup. Users may assigned to different servers but the databases should be update simultaneously. 
+ 
+ - NoSQL database is a better option for big data applications as it is a distributed, non-relational database designed for large-scale data storage and for massively-parallel, high-performance data processing across a large number of commodity servers. 
+ 
